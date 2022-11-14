@@ -5,7 +5,6 @@ from youtube_dl import YoutubeDL
 from PIL import Image
 import requests
 import datetime
-import os
 
 
 def get_best_stream(streams: Dict) -> Dict:
@@ -41,10 +40,7 @@ def get_song(query: str, num_results = 10) -> Song:
 
     return Song(title, best_stream, cover_art) 
 
-#song = get_song('https://www.youtube.com/watch?v=c0PZxWO33_Q')
-song = get_song('https://soundcloud.com/alpha-shitlord/jelly')
-#song = get_song('bustin makes me feel good')
+song = get_song('https://www.youtube.com/watch?v=c0PZxWO33_Q')
+# song = get_song('https://soundcloud.com/alpha-shitlord/jelly')
+# song = get_song('bustin makes me feel good')
 song.download()
-
-
-a=1
