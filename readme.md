@@ -4,7 +4,7 @@ A program to download audio from YouTube or SoundCloud in .mp3 format
 
 # Setup
 
-1. Install FFMPEG.
+1. [Install FFMPEG](https://www.geeksforgeeks.org/how-to-install-ffmpeg-on-windows/).
 2. Clone this repository.
 3. *(optional)* create a virtual env using `python -m venv ./example_venv` to install dependancies to, and activate the virtual env.
 4. Install dependacnies using `pip install -r requirements.txt`.
@@ -16,6 +16,7 @@ A program to download audio from YouTube or SoundCloud in .mp3 format
     `setx /m PATH "[PATH TO REPOSITORY]\dist\djdownloader;%PATH%"`.
 
     **Note: `[PATH TO REPOSITORY]` should be replaced with the suitable path, e.g. `D:\Code\Projects\DJdownloader`.**
+7. Restart system
 
 # Usage
 **If program was added to path (step 6.):**
