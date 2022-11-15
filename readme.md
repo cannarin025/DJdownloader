@@ -8,7 +8,7 @@ A program to download audio from YouTube or SoundCloud in .mp3 format
 2. Clone this repository
 3. run `pyinstaller ./djdownloader.py` from the root of the repository. This will create an executable file located at ./dist/djdownloader.exe
 4. *(optional)* Add `.\\DJdownloader\\dist\\djdownloader` to system path to call directly in command line using `djdownloader.exe`.
-    **Note: `./` should be replaced by the path to the repository**
+    **Note: `.\\` should be replaced by the path to the repository**
 
 # Usage
 ```
