@@ -1,5 +1,5 @@
 from argparse import ArgumentParser
-from yt_downloader import get_song_from_url, get_song_from_query
+from get_song import get_song_from_url, get_song_from_query
 import os
 import requests
 import sys
