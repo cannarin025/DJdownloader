@@ -30,29 +30,18 @@ def get_song_pytube(video: YouTube) -> Song:
     cover_art = Image.open(requests.get(video.thumbnail_url, stream=True).raw)
     return Song(title, best_stream, cover_art)
 
-def get_song(query: str, num_results = 10) -> Song:
-    if 'SOUNDCLOUD' in query.upper(): # if link is to soundcloud use YouTubeDL
-        song = get_song_YoutubeDL(query)
-    else:
-        try:
-            requests.get(query) # a valid url is passed so get data directly from video
-            try:
-                video_data = YouTube(f"{query}")
-                song = get_song_pytube(video_data)
-            except:
-                raise Exception("There was an issue with grabbing the video from this URL!")
-        except: # query is a string so search youtube for suitable results
-            s = Search(query)
-            non_livestream_results = [video for video in s.results if 'reason' not in list(video.vid_info['playabilityStatus'].keys())] # ignore livestreams 
-            for i, video in enumerate(non_livestream_results):
-                best_abr = video.streams.filter(type='audio').order_by('abr').last().abr
-                print(f"{i+1}. Title: {video.title}\n{(len(str(i+1))+2) * ' '}Best abr: {best_abr}\n{(len(str(i+1))+2) * ' '}Duration: {str(datetime.timedelta(seconds=video.length))}\n")
-            selected_index = int(input("Please enter a video index to continue: ")) - 1
-            video = s.results[selected_index]
-            song = get_song_pytube(video)
-    return song 
+def get_song_from_url(url: str) -> Song:
+    if 'SOUNDCLOUD' in url.upper():
+        return get_song_YoutubeDL(url)
+    video = YouTube(f"{url}")
+    return get_song_pytube(video)
 
-# song = get_song('https://www.youtube.com/watch?v=c0PZxWO33_Q')
-# song = get_song('https://soundcloud.com/alpha-shitlord/jelly')
-song = get_song('bustin makes me feel good')
-song.download()
+def get_song_from_query(query: str) -> Song:
+    s = Search(query)
+    non_livestream_results = [video for video in s.results if 'reason' not in list(video.vid_info['playabilityStatus'].keys())] # ignore livestreams 
+    for i, video in enumerate(non_livestream_results):
+        best_abr = video.streams.filter(type='audio').order_by('abr').last().abr
+        print(f"{i+1}. Title: {video.title}\n{(len(str(i+1))+2) * ' '}Best abr: {best_abr}\n{(len(str(i+1))+2) * ' '}Duration: {str(datetime.timedelta(seconds=video.length))}\n")
+    selected_index = int(input("Please enter a video index to continue: ")) - 1
+    video = s.results[selected_index]
+    return get_song_pytube(video)
