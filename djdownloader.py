@@ -2,9 +2,16 @@ from argparse import ArgumentParser
 from yt_downloader import get_song_from_url, get_song_from_query
 import os
 import requests
+import sys
 
-parser = ArgumentParser(description="Downloads audio from YouTube or SoundCloud in best available quality")
-parser.add_argument("query")
+class Parser(ArgumentParser):
+    def error(self, message):
+        sys.stderr.write('error: %s\n' % message)
+        self.print_help()
+        sys.exit(2)
+
+parser = Parser(description="Downloads audio from YouTube or SoundCloud in best available quality.")
+parser.add_argument("query", help="Enter either: 1. A valid URL to YouTube/SoundCloud content OR 2. A query to search for YouTube content.")
 parser.add_argument("--dir", help="Directory to download files to. Will default to current directory.")
 parser.add_argument("--artists", help="Names of contributing artitsts. Separate with commas.")
 
