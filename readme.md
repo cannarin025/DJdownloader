@@ -79,7 +79,7 @@ File downloaded at: L:\DJ\Not Itunes\Other\Disciples - On My Mind (Extended Mix)
 ```
 
 # Known Bugs:
-The error: `IndexError: tuple index out of range` is thrown when `pyinstaller ./djdownloader.py` is a Python 3.10 error with the following [solution](https://www.example.com).
+The error: `IndexError: tuple index out of range` can be thrown when `pyinstaller ./djdownloader.py` is run. This is a Python 3.10 error with the following [solution](https://www.example.com).
 To fix this error, open `C:\Python310\Lib\dis.py` and create a new line after line 431 with `extended_arg = 0` such that the code reads:
 
 ```py
