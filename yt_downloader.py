@@ -2,7 +2,7 @@
 from typing import Dict, List
 from song import Song
 from youtube_dl import YoutubeDL
-from pytube import YouTube, Search
+from pytube import YouTube, Search, Channel
 from PIL import Image
 import requests
 import datetime
@@ -38,10 +38,10 @@ def get_song_from_url(url: str) -> Song:
 
 def get_song_from_query(query: str) -> Song:
     s = Search(query)
-    non_livestream_results = [video for video in s.results if 'reason' not in list(video.vid_info['playabilityStatus'].keys())] # ignore livestreams 
+    non_livestream_results: List[YouTube] = [video for video in s.results if 'reason' not in list(video.vid_info['playabilityStatus'].keys())] # ignore livestreams 
     for i, video in enumerate(non_livestream_results):
         best_abr = video.streams.filter(type='audio').order_by('abr').last().abr
-        print(f"{i+1}. Title: {video.title}\n{(len(str(i+1))+2) * ' '}Best abr: {best_abr}\n{(len(str(i+1))+2) * ' '}Duration: {str(datetime.timedelta(seconds=video.length))}\n")
+        print(f"{i+1}. Title: {video.title}\n{(len(str(i+1))+2) * ' '}Best abr: {best_abr}\n{(len(str(i+1))+2) * ' '}Duration: {str(datetime.timedelta(seconds=video.length))}\n{(len(str(i+1))+2) * ' '}Views: {str(video.views)}\n{(len(str(i+1))+2) * ' '}Channel: {Channel(video.channel_url).channel_name}\n")
     selected_index = int(input("Please enter a video index to continue: ")) - 1
     video = s.results[selected_index]
     return get_song_pytube(video)
