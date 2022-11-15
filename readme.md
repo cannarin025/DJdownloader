@@ -16,8 +16,10 @@ djdownloader.exe [-h] [--dir DIR] [--artists ARTISTS] query
 Downloads audio from YouTube or SoundCloud in best available quality.
 
 positional arguments:
-query              Enter either: 1. A valid URL to YouTube/SoundCloud content OR 2. A query to search for YouTube
-                    content.
+query              Enter either: 
+                   1. A valid URL to YouTube/SoundCloud content OR 
+                   2. A query to search for YouTube
+                      content.
 
 optional arguments:
 -h, --help         show this help message and exit
