@@ -8,10 +8,12 @@ A program to download audio from YouTube or SoundCloud in .mp3 format
 2. Clone this repository.
 3. *(optional)* create a virtual env using `python -m venv ./example_venv` to install dependancies to, and activate the virtual env.
 4. Install dependacnies using `pip install -r requirements.txt`.
-5. run `pyinstaller ./djdownloader.py` from the root of the repository. This will create an executable file located at .\\dist\\djdownloader.exe.
-6. *(optional)* Add `.\\DJdownloader\\dist\\djdownloader` to system path to call directly in command line using `djdownloader.exe`.
+5. run `pyinstaller ./djdownloader.py` from the root of the repository. This will create an executable file located at `.\dist\djdownloader.exe`.
+6. *(optional)* Add `[PATH TO REPOSITORY]\DJdownloader\dist\djdownloader` to system path to call directly in command line using `djdownloader.exe`.
 
-    **Note: `.\\` should be replaced by the path to the root of the repository.**
+    This can be done by opening cmd as administrator and running the following: `setx /m PATH "[PATH TO REPOSITORY]\dist\djdownloader;%PATH%"`.
+
+    **Note: `[PATH TO REPOSITORY]` should be replaced with the suitable path, e.g. `D:\Code\Projects\DJdownloader`.**
 
 # Usage
 **If program was added to path (step 6.):**
@@ -35,7 +37,7 @@ optional arguments:
 **If program is not on path:**
 
 Instead run `PATH_TO_DJDOWNLOADER.EXE [-h] [--dir DIR] [--artists ARTISTS] query` 
-where PATH_TO_DJDOWNLOADER.EXE should be replaced by the path to the executable, e.g. `D:\\Code\\Projects\\DJdownloader\\dist\\djdownloader.exe`
+where PATH_TO_DJDOWNLOADER.EXE should be replaced by the path to the executable, e.g. `D:\Code\Projects\DJdownloader\dist\djdownloader.exe`.
 
 ## Example usage:
 ### Query Example:
@@ -72,4 +74,15 @@ L:\DJ\Not Itunes\Other> djdownloader.exe 'https://www.youtube.com/watch?v=Y7592K
 Downloading!...
 Done!
 File downloaded at: L:\DJ\Not Itunes\Other\Disciples - On My Mind (Extended Mix).mp3!
+```
+
+# Known Bugs:
+The error: `IndexError: tuple index out of range` is thrown when `pyinstaller ./djdownloader.py` is a Python 3.10 error with the following [solution](https://www.example.com).
+To fix this error, open `C:\Python310\Lib\dis.py` and create a new line after line 431 with `extended_arg = 0` such that the code reads:
+
+```py
+else:
+    arg = None
+    extended_arg = 0
+yield(i, op, arg)
 ```
