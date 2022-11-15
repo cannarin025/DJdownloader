@@ -35,3 +35,40 @@ optional arguments:
 
 Instead run `PATH_TO_DJDOWNLOADER.EXE [-h] [--dir DIR] [--artists ARTISTS] query` 
 where PATH_TO_DJDOWNLOADER.EXE should be replaced by the path to the executable, e.g. `D:\\Code\\Projects\\DJdownloader\\dist\\djdownloader.exe`
+
+## Example usage:
+### Query Example:
+
+```
+L:\DJ\Not Itunes\Other> djdownloader.exe 'these nights loud luxury extended' --artists 'Loud Luxury, KIDDO'
+1. Title: These Nights (Extended Mix)
+   Best abr: 160kbps
+   Duration: 0:03:25
+   Views: 11204
+   Channel: Loud Luxury - Topic
+
+2. Title: Loud Luxury Feat. KIDDO - These Nights (Extended Mix)
+   Best abr: 160kbps
+   Duration: 0:03:27
+   Views: 2223
+   Channel: GeloDJ - Music Promotion
+
+3. Title: Loud Luxury feat. KIDDO - These Nights (Official Music Video)
+   Best abr: 160kbps
+   Duration: 0:02:24
+   Views: 378025
+   Channel: Armada Music TV
+
+Please enter a video index to continue: 1
+Downloading!...
+Done!
+File downloaded at: L:\DJ\Not Itunes\Other\These Nights (Extended Mix).mp3!
+```
+
+### URL Example:
+```
+L:\DJ\Not Itunes\Other> djdownloader.exe 'https://www.youtube.com/watch?v=Y7592KzLLDU' --artists 'Disciples'
+Downloading!...
+Done!
+File downloaded at: L:\DJ\Not Itunes\Other\Disciples - On My Mind (Extended Mix).mp3!
+```
