@@ -9,7 +9,7 @@ A program to download audio from YouTube or SoundCloud in .mp3 format.
 3. *(optional)* Create a virtual env using `python -m venv ./example_venv` to install dependancies to, and activate the virtual env.
 4. Install dependacnies using `pip install -r requirements.txt`.
 5. Run `pyinstaller ./djdownloader.py` from the root of the repository. This will create an executable file located at `.\dist\djdownloader.exe`.
-6. *(optional)* Add `[PATH TO REPOSITORY]\DJdownloader\dist\djdownloader` to system path to call directly in command line using `djdownloader.exe`. Restart system after modifying system path.
+6. *(optional)* Add `[PATH TO REPOSITORY]\dist\djdownloader` to system path to call directly in command line using `djdownloader.exe`. Restart system after modifying system path.
 
     This can be done by opening cmd as administrator and running the following: 
     
