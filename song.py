@@ -42,11 +42,10 @@ class Song:
             open(filepath, 'wb').write(audio.content)
             print(f'Downloaded file as: {filepath}!')
         else:
-            self.best_stream.download(output_path=f'{download_path}')
-            download_filepath = f'{download_path}\\{[x for x in os.listdir(download_path) if self.title in x][0]}'
-            filepath = f'{download_path}\\{self.title}.mp3'
-            subprocess.run(['ffmpeg', '-i', download_filepath, filepath], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL) # convert download to mp3 and suppress output
+            download_filepath = self.best_stream.download(output_path=f'{download_path}')
+            mp3_filepath = f'{download_path}\\{self.title}.mp3'
+            subprocess.run(['ffmpeg', '-i', download_filepath, mp3_filepath], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL) # convert download to mp3 and suppress output
             os.remove(download_filepath)
-        add_cover_art(filepath, self.cover_art)
-        if artists: add_artists(filepath, artists)
-        print(f"Done!\nFile downloaded at: {filepath}!")
+        add_cover_art(mp3_filepath, self.cover_art)
+        if artists: add_artists(mp3_filepath, artists)
+        print(f"Done!\nFile downloaded at: {mp3_filepath}!")
