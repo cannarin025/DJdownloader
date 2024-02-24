@@ -2,7 +2,7 @@
 from typing import Dict, List
 from song import Song
 from youtube_dl import YoutubeDL
-from pytube import YouTube, Search, Channel
+from pytube import YouTube, Search, Channel, Playlist
 from PIL import Image
 import requests
 import datetime
@@ -45,3 +45,10 @@ def get_song_from_query(query: str) -> Song:
     selected_index = int(input("Please enter a video index to continue: ")) - 1
     video = s.results[selected_index]
     return get_song_pytube(video)
+
+def get_songs_from_playlist(playlist_url) -> List[Song]:
+    songs=[]
+    p = Playlist(playlist_url)
+    for video in p.videos:
+        songs.append(get_song_pytube(video))
+    return songs
